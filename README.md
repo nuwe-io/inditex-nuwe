@@ -32,15 +32,16 @@ Aquí se pide crear una API con funcionalidades básicas para poder implementar 
 	2. Clientes.
 	3. Lockers.
 	4. Obstáculos. 
+
 **Los obstáculos sólo deben crearse en caso de resolver el hard path propuesto más adelante.**
 ### Segunda fase - Algoritmos
 
-En esta fase se pide crear un algoritmo eficiente que resuelta el siguiente problema:
+En esta fase se pide crear un algoritmo eficiente que resuelva el siguiente problema:
 - Inditex ha creado un sistema de Lockers repartidos por varios puntos. Para optimizar las rutas de reparto, se han restringido a un único viaje por conductor, por lo que este debe dejar todos los pedidos realizados en un único Locker que sea el más óptimo para **todos** los clientes. La idea es minimizar la distancia total que deben recorrer los clientes para recoger sus pedidos.
 
 Ejemplo:
 
-Tenemos tres clientes: (cx1, cy1), (cx2, cy2), (cx3, cy3) y cinco Lockers: (lx1, ly1), (lx2, ly2), (lx3, ly3), (lx4, ly4), (lx5, ly5). Para todos ellos, el Locker más óptimo es: (lx3, ly3). Vuestro objetivo es calcular cuál es el Locker más óptimo en función de todos los pedidos que se han hecho hasta el momento. 
+Tenemos tres clientes: A, B, C y cinco Lockers: 1, 2, 3, 4 y 5. Supongamos que A hace un pedido y su Locker más cercano es el 1, este es asignado. Sin embargo, el cliente B hace un nuevo pedido, por lo que el Locker debería cambiar al que sea más óptimo para A y B.
 
 **INFORMACIÓN A TENER EN CUENTA: todos los puntos(direcciones) estarán basados en un plano de coordenadas cartesianas.**
 
@@ -52,8 +53,6 @@ Para resolver este problema, hay que crear un nuevo endpoint capaz de crear nuev
 - En caso de que no haya stock del producto elegido, no se debe crear el pedido y debe lanzar un error **412** (precondition failed).
 - En caso de que no haya ningún Locker, no se debe crear el pedido y debe lanzar un error **423** (Locked).
 
-Para resolver de forma correcta esta fase no sólo hay que tener en cuenta que funcione adecuadamente, también debe ser óptimo en tiempo de ejecución. Es decir, hay que elegir un algoritmo capaz de funcionar de forma eficiente para pocos puntos, pero también cuando el número de estos aumenta de forma significativa.
-
 **SOLVE IT THE HARD WAY**: a modo de dificultad añadida, se plantea el mismo escenario pero
 añadiendo obstáculos en el plano. Se proporcionarán puntos por los que el camino no puede
 pasar, por lo que ya no se podrán hacer caminos directos, será necesario tomar otra ruta y
@@ -64,6 +63,16 @@ problema.
 
 **Resolver el reto mediante esta vía añadirá puntuación extra, pero debe ser resuelto por
 completo y ser funcional para recibir este extra**.
+
+#### Información adicional
+
+Tanto el camino fácil como el difícil deben tener en cuenta que ha de ser escalable, es decir, debe ser eficiente tanto para unos pocos puntos, como para millones de ellos.
+Sea cual sea el camino elegido y el algoritmo implementado, habrá que añadir en la documentación una respuesta a la siguiente pregunta:
+
+- **¿Como montarías un algoritmo más óptimo computacionalmente que de soporte a millones de clientes y pedidos?**
+
+En caso de no tener tiempo de implementarlo, podéis desarrollar una solución teórica de todo aquello que se os ocurra para dar una solución a este problema y poder demostrar vuestro ingenio.
+
 ### Tercera fase - Despliegue y documentación
 
 Si da tiempo, se deberá desplegar usando **Podman** a modo de microservicio. En la solución que se entregue debe aparecer un **Containerfile** o **Dockerfile** completamente funcional listo para usar y testear el proyecto.
@@ -77,6 +86,8 @@ En la documentación se debe incluir lo siguiente:
 	- Cómo ayuda a mejorar la optimización de recursos
 	- Cómo ayuda a la hora de escalar la aplicación
 
+**NOTA IMPORTANTE:** el uso de podman es un añadido extra pero no prioritario. Hay que priorizar siempre las fases 1 y 2, así como crear una buena documentación y responder a la pregunta propuesta en la fase 2. Implementar únicamente en el caso de tener los conocimientos suficientes y una vez se hayan completado las demás tareas.
+
 ## Recursos proporcionados
 
 Para completar el challenge, se proporcionan los siguientes recursos:
@@ -88,6 +99,9 @@ Para completar el challenge, se proporcionan los siguientes recursos:
 - [OVA RHEL 9](https://drive.google.com/file/d/15S9aU5PQUOMZbysNNUy--COFABd-yVFi/view?usp=drive_link) -> Máquina virtual preconfigurada con todo lo necesario para desarrollar el reto.
   **En caso de problemas de rendimiento, aumentar la RAM a 4GB**.
   Si no es posible aumentar a 4GB la RAM o si el problema persiste, se permitirá usar el entorno habitual de trabajo.
+- **Podman Cheatsheet**: se proporciona una cheatsheet con la funcionalidad y comandos básicos de Podman by Red Hat. Se encuentra dentro del mismo repositorio.
+- **Containerfile**: archivo de ejemplo que se puede tomar como base para compilar el proyecto en un contenedor usando Podman.
+- **Dockerfile**: archivo de ejemplo que se puede tomar como base para crear una BBDD usando Podman. Podman también funciona con Dockerfiles.
 
 ### Tree del proyecto
 
@@ -154,3 +168,5 @@ inditex-nuwe/
 
 - Se pueden crear tantas clases de utilidad como sean necesarias, pero solamente se valorarán aquellos ficheros que están marcados.  
 - En caso de optar por el hard path, puede añadirse todo aquello que sea necesario y se valorará. Siempre y cuando esté completamente terminado.
+- El código proporcionado es completamente funcional y no hay que modificar nada. Tan sólo añadir todo aquello que falta para completar los objetivos propuestos.
+- Los archivos Containerfile y Dockerfile pueden ser modificados según las necesidades de cada uno.

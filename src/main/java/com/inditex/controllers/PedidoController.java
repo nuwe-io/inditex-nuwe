@@ -23,4 +23,20 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api")
 public class PedidoController {
+    // Implementa aquí la solución requerida
+	
+    // Método de ejemplo
+    @DeleteMapping("/pedidos")
+    public ResponseEntity<HttpStatus> deleteAllPedidos(){
+	List<Pedido> pedidos = pedidoRepository.findAll();
+	for (Pedido p : pedidos){
+	    Producto prod = p.getProducto();
+	    prod.setStock(prod.getStock() + 1);
+	    productoRepository.save(prod);
+	}
+
+	pedidoRepository.deleteAll();
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

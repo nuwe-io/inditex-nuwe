@@ -23,4 +23,24 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api")
 public class ObstaculoController {
+    // Implementa aquí la solución requerida
+    
+    // Métodos de ejemplo
+    @DeleteMapping("/obstaculos/{direccionX}/{direccionY}")
+    public ResponseEntity<HttpStatus> deleteObstaculo(@PathVariable("direccionX") int direccionX, @PathVariable("direccionY") int direccionY){
+        Optional<Obstaculo> obstaculo = obstaculoRepository.findByDireccionXAndDireccionY(direccionX, direccionY);
+
+        if (! obstaculo.isPresent()){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        obstaculoRepository.delete(obstaculo.get());
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @DeleteMapping("/obstaculos")
+    public ResponseEntity<HttpStatus> deleteAllObstaculos(){
+        obstaculoRepository.deleteAll();
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

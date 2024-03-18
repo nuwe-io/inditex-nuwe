@@ -22,4 +22,24 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api")
 public class ProductoController {
+    // Implementa aquí la solución requerida
+    
+    // Métodos de ejemplo
+    @DeleteMapping("/productos/{id}")
+    public ResponseEntity<HttpStatus> deleteProducto(@PathVariable("id") long id){
+        Optional<Producto> producto = productoRepository.findById(id);
+
+        if (! producto.isPresent()){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        productoRepository.deleteById(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @DeleteMapping("/productos")
+    public ResponseEntity<HttpStatus> deleteAllProductos(){
+        productoRepository.deleteAll();
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

@@ -22,4 +22,24 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api")
 public class LockerController {
+    // Implementa aquí la solución requerida
+    
+    // Métodos de ejemplo
+    @DeleteMapping("/lockers/{id}")
+    public ResponseEntity<HttpStatus> deleteLocker(@PathVariable("id") long id){
+        Optional<Locker> locker = lockerRepository.findById(id);
+
+        if (! locker.isPresent()){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        lockerRepository.deleteById(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @DeleteMapping("/lockers")
+    public ResponseEntity<HttpStatus> deleteAllLockers(){
+        lockerRepository.deleteAll();
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }
