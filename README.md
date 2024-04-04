@@ -71,7 +71,7 @@ En esta fase, también se evalúa la capacidad de los participantes de trabajar 
 
 ### **Cuarta fase - Segundo algoritmo**
 
-A modo de dificultad añadida, se plantea el mismo escenario que la **Fase 2** pero añadiendo obstáculos en el plano. Se proporcionarán puntos por los que el camino no puede pasar, por lo que ya no se podrán hacer caminos directos(líneas rectas), será necesario tomar otra ruta y estas deben ser planificadas alrededor de estos obstáculos, por lo que el Locker más óptimo podría variar respecto a los resultados obtenidos en la Fase 2. El objetivo final será:
+A modo de dificultad añadida, se plantea el mismo escenario que la **Fase 2** pero añadiendo obstáculos en el plano. Se proporcionarán puntos por los que el camino no puede pasar, por lo que ya no se podrán hacer caminos directos(líneas rectas) al encontrarse con uno de estos puntos, será necesario tomar otra ruta y estas deben ser planificadas alrededor de estos obstáculos. El Locker más óptimo podría variar respecto a los resultados obtenidos en la Fase 2. El objetivo final será:
 
 Desarrollar un algoritmo capaz de encontrar el Locker más óptimo para todos los clientes de la misma forma que en la **Fase 2**, pero teniendo en cuenta los obstáculos. De esta forma se le da un toque más realista a la hora de crear una solución para este problema.
 
