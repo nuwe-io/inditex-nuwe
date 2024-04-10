@@ -52,6 +52,8 @@ Para ello tendrán que:
 
 En esta fase se propone integrar Data Grid de Red Hat para mejorar el rendimiento y la escalabilidad de la aplicación. Para poder llevar a cabo esta fase, es necesario haber completado las dos primeras y tener un código base limpio y funcional.
 
+Como punto de partida, se proporciona una configuración inicial de la versión embedded de DataGrid. Se puede encontrar en DataGridConfiguration.java.
+
 Se propone incluir esta funcionalidad extra a la capa de acceso a los datos (repositorios), y la siguientes acciones deberán ser llevadas a cabo:
 
 1. Anotaciones de caché en repositorios
